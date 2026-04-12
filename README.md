@@ -1,2 +1,2 @@
-# Python for Biologists : DNA Sequence Analyzer with Mutation Predicttion + ORF Finder
+# Targeted Gene Finder & Functional Sequence Analyzer
 
