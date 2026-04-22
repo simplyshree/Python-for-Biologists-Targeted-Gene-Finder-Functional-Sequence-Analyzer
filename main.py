@@ -10,7 +10,7 @@ def main():
         print("Error: Please enter valid sequences")
         return
 
-    # Basic Analysis
+    
     print("\n--- Basic Analysis ---")
     print("Length:", len(seq1))
     print("GC Content: {:.2f}%".format(gc_content(seq1)))
@@ -18,13 +18,13 @@ def main():
     rna = transcribe(seq1)
     print("RNA:", rna)
 
-    # Alignment
+    
     print("\n--- Alignment ---")
     alignment = align_sequences(seq1, seq2)
     print(alignment)
     print("Score:", alignment.score)
 
-    # ORF Detection
+    
     print("\n--- ORF Detection ---")
     orfs = find_orfs(seq1)
     filtered_orfs = filter_orfs(orfs)
@@ -33,7 +33,7 @@ def main():
         print("No significant ORFs found.")
         return
 
-    # Score ORFs
+    
     scored_orfs = []
     for start, end in filtered_orfs:
         score = score_orf(seq1, start, end)
@@ -44,7 +44,7 @@ def main():
     for i, (start, end, score) in enumerate(scored_orfs[:3]):
         print(f"ORF {i+1}: Start={start}, End={end}, Length={end-start}, Score={score:.2f}")
 
-    # Proteins
+    
     print("\n--- Protein Sequences ---")
     proteins = translate_orfs(seq1, [(s, e) for s, e, _ in scored_orfs[:3]])
 
@@ -52,7 +52,7 @@ def main():
         print(f"\nORF {i+1} Protein:")
         print(protein)
 
-    # Mutation Analysis
+    
     print("\n--- Mutation Analysis ---")
     mutations = detect_mutations(seq1, seq2)
     orf_mutations = mutations_in_orfs(mutations, filtered_orfs)

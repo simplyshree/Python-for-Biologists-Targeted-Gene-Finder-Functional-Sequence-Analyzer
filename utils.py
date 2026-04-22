@@ -2,23 +2,23 @@ from Bio.Seq import Seq
 from Bio.Align import PairwiseAligner
 import matplotlib.pyplot as plt
 
-# GC Content
+
 def gc_content(seq):
     return ((seq.count("G") + seq.count("C")) / len(seq)) * 100 if len(seq) > 0 else 0
 
 
-# Transcription
+
 def transcribe(seq):
     return Seq(seq).transcribe()
 
 
-# Safe Translation
+
 def translate(seq):
     seq = seq[:len(seq) - (len(seq) % 3)]
     return Seq(seq).translate()
 
 
-# Alignment
+
 def align_sequences(seq1, seq2):
     aligner = PairwiseAligner()
     aligner.mode = 'global'
@@ -26,7 +26,7 @@ def align_sequences(seq1, seq2):
     return alignments[0]
 
 
-# Mutation Detection
+
 def detect_mutations(seq1, seq2):
     mutations = []
     min_len = min(len(seq1), len(seq2))
@@ -38,7 +38,7 @@ def detect_mutations(seq1, seq2):
     return mutations
 
 
-# ORF Finder
+
 def find_orfs(seq):
     start_codon = "ATG"
     stop_codons = ["TAA", "TAG", "TGA"]
@@ -60,12 +60,12 @@ def find_orfs(seq):
     return orfs
 
 
-# Filter ORFs
+
 def filter_orfs(orfs, min_length=5):
     return [orf for orf in orfs if (orf[1] - orf[0]) >= min_length]
 
 
-# Translate ORFs
+
 def translate_orfs(seq, orfs):
     proteins = []
     for start, end in orfs:
@@ -75,7 +75,7 @@ def translate_orfs(seq, orfs):
     return proteins
 
 
-# Score ORF
+
 def score_orf(seq, start, end):
     length = end - start
     sub_seq = seq[start:end]
@@ -93,7 +93,7 @@ def mutations_in_orfs(mutations, orfs):
     return result
 
 
-# Mutation Classification
+
 def classify_mutation(seq1, seq2, pos):
     codon_start = (pos // 3) * 3
 
@@ -114,7 +114,7 @@ def classify_mutation(seq1, seq2, pos):
         return "Missense"
 
 
-# GRAPH: GC Content
+
 def plot_gc_content(seq):
     if len(seq) == 0:
         print("Empty sequence")
@@ -130,7 +130,7 @@ def plot_gc_content(seq):
     plt.show()
 
 
-# GRAPH: ORF Lengths
+
 def plot_orf_lengths(orfs):
     lengths = [end - start for start, end in orfs]
 
